@@ -1,0 +1,36 @@
+codecov:
+  branch: master
+  bot: Nitix
+
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
+
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 1.25
+        branches:
+          - master
+
+    patch:
+      default:
+        target: auto
+        branches: 
+          - master
+
+    changes:
+      default:
+        branches: 
+          - master
+
+  ignore: 
+    - tests/.*
+
+comment:
+  layout: "header, diff, changes, sunburst, uncovered, tree"
+  branches: 
+    - master
+  behavior: default
