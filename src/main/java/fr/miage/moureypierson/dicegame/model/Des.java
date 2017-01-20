@@ -1,8 +1,8 @@
-package Model;
+package fr.miage.moureypierson.dicegame.model;
 
-import Controller.Randomizer;
+import fr.miage.moureypierson.dicegame.controller.Randomizer;
 
-import java.util.UUID;
+import java.util.ArrayList;
 
 /**
  * Created by Asus on 08/01/2017.
@@ -27,6 +27,6 @@ public class Des {
     }
 
     public void roll() {
-        this.value = Randomizer.getInstance().getValue();
+        this.value = Randomizer.getInstance().nextRandom();
     }
 }

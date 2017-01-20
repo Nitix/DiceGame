@@ -1,4 +1,4 @@
-package Model;
+package fr.miage.moureypierson.dicegame.model;
 
 /**
  * Created by Asus on 08/01/2017.

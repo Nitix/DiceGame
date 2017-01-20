@@ -1,4 +1,4 @@
-package Model;
+package fr.miage.moureypierson.dicegame.model;
 
 import java.util.ArrayList;
 
@@ -6,12 +6,14 @@ import java.util.ArrayList;
  * Created by Asus on 08/01/2017.
  */
 public class Joueur {
+    private final ListeScore listeScore;
     public String nomJoueur;
     public String prenomJoueur;
 
-    public Joueur(String nomJoueur, String prenomJoueur) {
+    public Joueur(String nomJoueur, String prenomJoueur, ListeScore listeScore) {
         this.nomJoueur = nomJoueur;
         this.prenomJoueur = prenomJoueur;
+        this.listeScore = listeScore;
     }
 
     public String getNomJoueur() {
@@ -22,10 +24,10 @@ public class Joueur {
         return prenomJoueur;
     }
 
-    public ArrayList<Score> getScoresJoueur() {
+    public ArrayList<Score> getScoreJoueur() {
         ArrayList<Score> scoresJoueurs = new ArrayList<Score>();
-        for (Score score : ListeScore.getListe()){
-            if((score.j.getNomJoueur()==this.getNomJoueur())&&(score.j.getPrenomJoueur()==this.getPrenomJoueur())){
+        for (Score score : listeScore.getScores()) {
+            if ((score.j.getNomJoueur().equals(this.getNomJoueur())) && (score.j.getPrenomJoueur().equals(this.getPrenomJoueur()))) {
                 scoresJoueurs.add(score);
             }
         }
