@@ -21,4 +21,6 @@ public class ScoreView extends JPanel {
         this.add(new JLabel("Tableau des scores"));
         this.add(table);
     }
+
+
 }

@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="fr.miage.moureypierson.dicegame.controller.LoginController" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="251.0" layoutY="268.0" mnemonicParsing="false" text="Commencer" />
+      <Button layoutX="251.0" layoutY="268.0" mnemonicParsing="false" text="Commencer" fx:id="start" />
       <Label layoutX="221.0" layoutY="48.0" text="Bonjour, qui êtes-vous ?" />
-      <TextField layoutX="207.0" layoutY="185.0" promptText="Prénom" />
-      <TextField layoutX="208.0" layoutY="115.0" promptText="Nom" />
+      <TextField layoutX="207.0" layoutY="185.0" promptText="Prénom" fx:id="prenom" />
+      <TextField layoutX="208.0" layoutY="115.0" promptText="Nom" fx:id="nom" />
    </children>
 </AnchorPane>
