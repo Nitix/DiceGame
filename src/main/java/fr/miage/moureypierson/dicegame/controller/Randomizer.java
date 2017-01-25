@@ -5,15 +5,13 @@ package fr.miage.moureypierson.dicegame.controller;
  */
 public class Randomizer {
     private static Randomizer instance;
-    private static boolean created = false;
     private int maxValue = 12;
 
     private Randomizer(){ }
 
     public synchronized static Randomizer getInstance(){
-        if(!created){
+        if(instance == null){
             instance = new Randomizer();
-            created = true;
         }
         return instance;
     }
