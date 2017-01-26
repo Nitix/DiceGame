@@ -5,7 +5,6 @@ package fr.miage.moureypierson.dicegame.controller;
  */
 public class Randomizer {
     private static Randomizer instance;
-    private int maxValue = 12;
 
     private Randomizer(){ }
 
@@ -17,14 +16,6 @@ public class Randomizer {
     }
 
     public int nextRandom() {
-        return (int) (Math.random()*maxValue);
-    }
-
-    public int getMaxValue() {
-        return maxValue;
-    }
-
-    public void setMaxValue(int maxValue) {
-        this.maxValue = maxValue;
+        return (int)(Math.random() * (12-2)) + 2;
     }
 }
