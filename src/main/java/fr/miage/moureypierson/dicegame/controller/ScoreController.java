@@ -55,21 +55,21 @@ public class ScoreController implements Initializable {
                 stage.show();
             }
         });
-
-        if(isMyScore){
-            initMyScores();
-        }
-        else{
-            initAllScores();
-        }
-
     }
 
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
-    public void setType(boolean isMyScore){ this.isMyScore = isMyScore; }
+    public void setType(boolean isMyScore){
+        this.isMyScore = isMyScore;
+        if(isMyScore){
+            initMyScores();
+        }
+        else{
+            initAllScores();
+        }
+    }
 
     private void initMyScores(){
         ObservableList<String> items = FXCollections.observableArrayList();

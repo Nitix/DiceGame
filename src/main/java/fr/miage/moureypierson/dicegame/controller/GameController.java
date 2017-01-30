@@ -63,19 +63,9 @@ public class GameController implements Initializable {
             }
         });
 
-        boutonLesScores.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                loadScoreScene(false);
-            }
-        });
+        boutonLesScores.setOnAction(event -> loadScoreScene(false));
 
-        boutonMesScores.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                loadScoreScene(true);
-            }
-        });
+        boutonMesScores.setOnAction(event -> loadScoreScene(true));
     }
 
     public void setStage(Stage stage) {
@@ -161,9 +151,9 @@ public class GameController implements Initializable {
         stage.setTitle("Dice Game");
         stage.setScene(new Scene(root, 600, 400));
         ScoreController controller = fxmlLoader.getController();
-        controller.setStage(stage);
+        controller.setJoueur(joueur);
         controller.setType(isMyScore);
-        if(isMyScore){controller.setJoueur(joueur);}
+        controller.setStage(stage);
         stage.show();
     }
 
