@@ -160,6 +160,7 @@ public class GameController implements Initializable {
         stage.setScene(new Scene(root, 600, 400));
         ScoreController controller = fxmlLoader.getController();
         controller.setStage(stage);
+        controller.setType(isMyScore);
         stage.show();
     }
 

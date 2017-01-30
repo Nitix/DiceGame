@@ -1,5 +1,7 @@
 package fr.miage.moureypierson.dicegame.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,8 +24,13 @@ public class ScoreController implements Initializable {
 
     private Stage stage;
 
+    private boolean isMyScore;
+
     @FXML
     private Button retour;
+
+    @FXML
+    private ListView listeScore;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,9 +52,29 @@ public class ScoreController implements Initializable {
                 stage.show();
             }
         });
+
+        if(isMyScore){
+            initMyScores();
+        }
+        else{
+            initAllScores();
+        }
+
     }
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    public void setType(boolean isMyScore){ this.isMyScore = isMyScore; }
+
+    private void initMyScores(){
+        ObservableList<String> items = FXCollections.observableArrayList ("Score 1", "Score 2", "Score 3", "Score 4");
+        listeScore.setItems(items);
+    }
+
+    private void initAllScores(){
+        ObservableList<String> items = FXCollections.observableArrayList ("Score 1", "Score 2", "Score 3", "Score 4");
+        listeScore.setItems(items);
     }
 }
