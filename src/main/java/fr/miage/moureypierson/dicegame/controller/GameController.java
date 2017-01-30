@@ -1,8 +1,6 @@
 package fr.miage.moureypierson.dicegame.controller;
 
 import fr.miage.moureypierson.dicegame.model.Des;
-import fr.miage.moureypierson.dicegame.model.Joueur;
-import fr.miage.moureypierson.dicegame.model.ListeScore;
 import fr.miage.moureypierson.dicegame.view.GameView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -83,10 +81,10 @@ public class GameController implements Initializable {
     }
 
     public void animation(int value){
-
-        //insérer animation
-
         int[] images = getDeImage(value);
+        //this.getGameView().animation(imageDe1,images[0]);
+        //this.getGameView().animation(imageDe2,images[1]);
+
         imageDe1.setImage(new Image("/images/"+images[0]+".png"));
         imageDe2.setImage(new Image("/images/"+images[1]+".png"));
     }
