@@ -1,19 +1,19 @@
 package fr.miage.moureypierson.dicegame.model;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by Asus on 08/01/2017.
  */
 public class Joueur {
-    private int[] listeScore;
+    private ArrayList<Integer> listeScore;
     private String nomJoueur;
     private String prenomJoueur;
 
     public Joueur(String nomJoueur, String prenomJoueur) {
         this.nomJoueur = nomJoueur;
         this.prenomJoueur = prenomJoueur;
-        this.listeScore = new int[7];
+        this.listeScore = new ArrayList<Integer>();
     }
 
     public String getNomJoueur() {
@@ -24,7 +24,7 @@ public class Joueur {
         return prenomJoueur;
     }
 
-    public int[] getScoresJoueur() {
+    public ArrayList<Integer> getScoresJoueur() {
         return listeScore;
     }
 
@@ -36,18 +36,31 @@ public class Joueur {
         this.prenomJoueur = prenomJoueur;
     }
 
-    public void addScore(int value) {
-        if(this.listeScore.length>=7) {
+    public boolean addScore(int value) {
+        if(this.listeScore.size()>=15) {
             int index = 0;
             for (int score : listeScore) {
                 if (value > score) {
-                    this.listeScore[index] = value;
+                    this.listeScore.set(index,value);
+                    tri();
+                    return true;
                 }
                 index++;
             }
         }
         else{
-            this.listeScore[listeScore.length]=value;
+            this.listeScore.add(value);
         }
+        tri();
+        return true;
+    }
+
+    public void tri(){
+        Collections.sort(listeScore, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer i1, Integer i2) {
+                return i2.compareTo(i1);
+            }
+        });
     }
 }
