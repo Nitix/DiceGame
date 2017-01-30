@@ -1,8 +1,6 @@
 package fr.miage.moureypierson.dicegame.controller;
 
-import fr.miage.moureypierson.dicegame.view.GameView;
-import fr.miage.moureypierson.dicegame.view.LoginView;
-import javafx.application.Application;
+import fr.miage.moureypierson.dicegame.model.Joueur;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -40,8 +38,7 @@ public class LoginController implements Initializable{
         start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(prenom.getText());
-                System.out.println(nom.getText());
+                Joueur user = new Joueur(nom.getText(), prenom.getText());
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vues/jeu.fxml"));
                 Parent root = null;
                 try {
@@ -54,6 +51,7 @@ public class LoginController implements Initializable{
                 stage.setScene(new Scene(root, 600, 400));
                 GameController controller = fxmlLoader.getController();
                 controller.setStage(stage);
+                controller.setJoueur(user);
                 stage.show();
             }
         });

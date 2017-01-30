@@ -1,4 +1,4 @@
-package fr.miage.moureypierson.dicegame.model;
+/*package fr.miage.moureypierson.dicegame.model;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -9,7 +9,7 @@ import java.util.LinkedList;
 /**
  * Created by Asus on 08/01/2017.
  */
-public class ListeScore implements TableModel {
+/*public class ListeScoreGuillaume implements TableModel {
 
     private LinkedList<TableModelListener> listeners = new LinkedList<TableModelListener>();
 
@@ -74,4 +74,4 @@ public class ListeScore implements TableModel {
     public void removeTableModelListener(TableModelListener l) {
         listeners.remove(l);
     }
-}
+}*/

@@ -1,14 +1,12 @@
-package fr.miage.moureypierson.dicegame.model;
+/*package fr.miage.moureypierson.dicegame.model;
 
 /**
  * Created by Asus on 08/01/2017.
  */
-public class Score {
-    public Joueur j;
+/*public class Score {
     public int value;
 
-    public Score(Joueur j, int value) {
-        this.j = j;
+    public Score(int value) {
         this.value = value;
     }
-}
+}*/

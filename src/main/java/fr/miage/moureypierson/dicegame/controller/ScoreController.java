@@ -1,5 +1,6 @@
 package fr.miage.moureypierson.dicegame.controller;
 
+import fr.miage.moureypierson.dicegame.model.Joueur;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +24,7 @@ import java.util.ResourceBundle;
 public class ScoreController implements Initializable {
 
     private Stage stage;
+    private Joueur joueur;
 
     private boolean isMyScore;
 
@@ -49,6 +51,7 @@ public class ScoreController implements Initializable {
                 stage.setScene(new Scene(root, 600, 400));
                 GameController controller = fxmlLoader.getController();
                 controller.setStage(stage);
+                controller.setJoueur(joueur);
                 stage.show();
             }
         });
@@ -69,12 +72,19 @@ public class ScoreController implements Initializable {
     public void setType(boolean isMyScore){ this.isMyScore = isMyScore; }
 
     private void initMyScores(){
-        ObservableList<String> items = FXCollections.observableArrayList ("Score 1", "Score 2", "Score 3", "Score 4");
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for(int value : joueur.getScoresJoueur()){
+            items.add(value+"");
+        }
         listeScore.setItems(items);
     }
 
     private void initAllScores(){
-        ObservableList<String> items = FXCollections.observableArrayList ("Score 1", "Score 2", "Score 3", "Score 4");
+        ObservableList<String> items = FXCollections.observableArrayList ("Il faut", "récupérer tous", "les joueurs", "de la base");
         listeScore.setItems(items);
+    }
+
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
     }
 }

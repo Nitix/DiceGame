@@ -6,14 +6,14 @@ import java.util.ArrayList;
  * Created by Asus on 08/01/2017.
  */
 public class Joueur {
-    private final ListeScore listeScore;
-    public String nomJoueur;
-    public String prenomJoueur;
+    private int[] listeScore;
+    private String nomJoueur;
+    private String prenomJoueur;
 
-    public Joueur(String nomJoueur, String prenomJoueur, ListeScore listeScore) {
+    public Joueur(String nomJoueur, String prenomJoueur) {
         this.nomJoueur = nomJoueur;
         this.prenomJoueur = prenomJoueur;
-        this.listeScore = listeScore;
+        this.listeScore = new int[7];
     }
 
     public String getNomJoueur() {
@@ -24,14 +24,8 @@ public class Joueur {
         return prenomJoueur;
     }
 
-    public ArrayList<Score> getScoreJoueur() {
-        ArrayList<Score> scoresJoueurs = new ArrayList<Score>();
-        for (Score score : listeScore.getScores()) {
-            if ((score.j.getNomJoueur().equals(this.getNomJoueur())) && (score.j.getPrenomJoueur().equals(this.getPrenomJoueur()))) {
-                scoresJoueurs.add(score);
-            }
-        }
-        return scoresJoueurs;
+    public int[] getScoresJoueur() {
+        return listeScore;
     }
 
     public void setNomJoueur(String nomJoueur) {
@@ -40,5 +34,20 @@ public class Joueur {
 
     public void setPrenomJoueur(String prenomJoueur) {
         this.prenomJoueur = prenomJoueur;
+    }
+
+    public void addScore(int value) {
+        if(this.listeScore.length>=7) {
+            int index = 0;
+            for (int score : listeScore) {
+                if (value > score) {
+                    this.listeScore[index] = value;
+                }
+                index++;
+            }
+        }
+        else{
+            this.listeScore[listeScore.length]=value;
+        }
     }
 }

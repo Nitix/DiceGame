@@ -1,6 +1,7 @@
 package fr.miage.moureypierson.dicegame.controller;
 
 import fr.miage.moureypierson.dicegame.model.Des;
+import fr.miage.moureypierson.dicegame.model.Joueur;
 import fr.miage.moureypierson.dicegame.view.GameView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,6 +25,7 @@ import java.util.ResourceBundle;
 public class GameController implements Initializable {
 
     private Des des;
+    private Joueur joueur;
 
     @FXML
     private Button boutonJouer;
@@ -50,7 +52,6 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         des = new Des();
 
         boutonJouer.setOnAction(new EventHandler<ActionEvent>() {
@@ -58,6 +59,7 @@ public class GameController implements Initializable {
             public void handle(ActionEvent event) {
                 int value = getResult();
                 animation(value);
+                joueur.addScore(value);
             }
         });
 
@@ -161,7 +163,11 @@ public class GameController implements Initializable {
         ScoreController controller = fxmlLoader.getController();
         controller.setStage(stage);
         controller.setType(isMyScore);
+        if(isMyScore){controller.setJoueur(joueur);}
         stage.show();
     }
 
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
+    }
 }
