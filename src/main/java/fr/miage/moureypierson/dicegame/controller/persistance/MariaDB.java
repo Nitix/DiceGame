@@ -1,7 +1,19 @@
 package fr.miage.moureypierson.dicegame.controller.persistance;
 
+import fr.miage.moureypierson.dicegame.model.Persistable;
+
 /**
- * Created by Guillaume on 19/01/2017.
+ * MariaDB implementation of persistence unit
  */
-public class MariaDB extends Persistance {
+public class MariaDB implements Persistence {
+
+    @Override
+    public long save(Persistable persistable) {
+        return 0;
+    }
+
+    @Override
+    public void delete(Persistable persistable) {
+
+    }
 }

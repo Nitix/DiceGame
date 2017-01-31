@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by Asus on 08/01/2017.
  */
-public class Des {
+public class Des{
     private int idDes;
     private int value;
     private static int nbDes = 0;

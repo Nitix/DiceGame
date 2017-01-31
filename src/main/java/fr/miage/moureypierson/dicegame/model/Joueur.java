@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Created by Asus on 08/01/2017.
  */
-public class Joueur {
+public class Joueur implements Persistable {
     private ArrayList<Integer> listeScore;
     private String nomJoueur;
     private String prenomJoueur;
@@ -13,7 +13,7 @@ public class Joueur {
     public Joueur(String nomJoueur, String prenomJoueur) {
         this.nomJoueur = nomJoueur;
         this.prenomJoueur = prenomJoueur;
-        this.listeScore = new ArrayList<Integer>();
+        this.listeScore = new ArrayList<>();
     }
 
     public String getNomJoueur() {
@@ -56,11 +56,6 @@ public class Joueur {
     }
 
     public void tri(){
-        Collections.sort(listeScore, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer i1, Integer i2) {
-                return i2.compareTo(i1);
-            }
-        });
+        listeScore.sort(Comparator.reverseOrder());
     }
 }

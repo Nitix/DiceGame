@@ -130,8 +130,7 @@ public class GameController implements Initializable {
                 de1 = 1; de2 = 1;
                 break;
         }
-        int[] des = {de1,de2};
-        return des;
+        return new int[]{de1, de2};
     }
 
     public int getResult(){
