@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -31,6 +32,9 @@ public class GameController implements Initializable {
 
     private Des des;
     private Joueur joueur;
+
+    @FXML
+    private Label text;
 
     @FXML
     private Button boutonJouer;
@@ -66,7 +70,14 @@ public class GameController implements Initializable {
             public void handle(ActionEvent event) {
                 int value = getResult();
                 animation(value);
+                boolean isHighScore = isHighScore(value);
                 joueur.addScore(value);
+                if(isHighScore){
+                    text.setText("High Score !");
+                }
+                else{
+                    text.setText("A vous de jouer !");
+                }
             }
         });
 
@@ -83,9 +94,6 @@ public class GameController implements Initializable {
         int[] images = getDeImage(value);
         this.animation(imageDe1,images[0]);
         this.animation(imageDe2,images[1]);
-
-        //imageDe1.setImage(new Image("/images/"+images[0]+".png"));
-        //imageDe2.setImage(new Image("/images/"+images[1]+".png"));
     }
 
     private int[] getDeImage(int value){
@@ -170,5 +178,17 @@ public class GameController implements Initializable {
     public void animation(ImageView imageView, int endValue){
         TimerAnimation.startAnimation(imageView);
         imageView.setImage(new Image("/images/"+endValue+".png"));
+    }
+
+    public boolean isHighScore(int value) {
+        if(joueur.getScoresJoueur().size()>0) {
+            if (value >= joueur.getScoresJoueur().get(0)) {
+                return true;
+            }
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }
