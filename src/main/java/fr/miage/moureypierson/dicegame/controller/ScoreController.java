@@ -37,6 +37,7 @@ public class ScoreController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         retour.setOnAction(new EventHandler<ActionEvent>() {
+
             @Override
             public void handle(ActionEvent event) {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vues/jeu.fxml"));
@@ -87,4 +88,5 @@ public class ScoreController implements Initializable {
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
     }
+
 }

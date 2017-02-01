@@ -59,24 +59,32 @@ public class GameController implements Initializable {
 
     private Stage stage;
 
-    private final Object lock = new Object();
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        des = new Des();
+        this.des = new Des();
 
         boutonJouer.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 int value = getResult();
                 animation(value);
-                boolean isHighScore = isHighScore(value);
-                joueur.addScore(value);
-                if(isHighScore){
-                    text.setText("High Score !");
+
+                joueur.addPoints(value);
+                joueur.upTour();
+
+                if(joueur.getTour()>=7){
+                    boolean isHighScore = isHighScore(value);
+                    if(isHighScore){
+                        text.setText("High Score !");
+                    }
+                    else{
+                        text.setText("Fin du jeu");
+                    }
+                    joueur.addScore(joueur.getPointsPartie());
+                    boutonJouer.setDisable(true);
                 }
                 else{
-                    text.setText("A vous de jouer !");
+                    text.setText("Encore "+(7-joueur.getTour())+" tour(s) !");
                 }
             }
         });
@@ -173,6 +181,9 @@ public class GameController implements Initializable {
 
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
+        if(this.joueur.getTour()>=7){
+            boutonJouer.setDisable(true);
+        }
     }
 
     public void animation(ImageView imageView, int endValue){

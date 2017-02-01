@@ -9,11 +9,15 @@ public class Joueur implements Persistable {
     private ArrayList<Integer> listeScore;
     private String nomJoueur;
     private String prenomJoueur;
+    private int pointsPartie;
+    private int nbTour = 0;
 
     public Joueur(String nomJoueur, String prenomJoueur) {
         this.nomJoueur = nomJoueur;
         this.prenomJoueur = prenomJoueur;
         this.listeScore = new ArrayList<>();
+        this.nbTour = 0;
+        this.pointsPartie = 0;
     }
 
     public String getNomJoueur() {
@@ -34,6 +38,10 @@ public class Joueur implements Persistable {
 
     public void setPrenomJoueur(String prenomJoueur) {
         this.prenomJoueur = prenomJoueur;
+    }
+
+    public void addPoints(int value){
+        if(value==7){this.pointsPartie+=10;}
     }
 
     public boolean addScore(int value) {
@@ -57,5 +65,17 @@ public class Joueur implements Persistable {
 
     public void tri(){
         listeScore.sort(Comparator.reverseOrder());
+    }
+
+    public int getTour() {
+        return nbTour;
+    }
+
+    public void upTour(){
+        this.nbTour++;
+    }
+
+    public int getPointsPartie() {
+        return pointsPartie;
     }
 }
