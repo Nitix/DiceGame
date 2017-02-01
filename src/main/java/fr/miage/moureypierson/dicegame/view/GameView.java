@@ -23,6 +23,8 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Created by Asus on 08/01/2017.
  */
@@ -38,30 +40,6 @@ public class GameView extends Application {
         GameController controller = fxmlLoader.getController();
         controller.setStage(stage);
         stage.show();
-    }
-
-    public void animation(ImageView imageView, int endValue){
-
-        ArrayList<Image> listeImages = new ArrayList<>();
-        listeImages.add(new Image("/images/1.png"));
-        listeImages.add(new Image("/images/2.png"));
-        listeImages.add(new Image("/images/3.png"));
-        listeImages.add(new Image("/images/4.png"));
-        listeImages.add(new Image("/images/5.png"));
-        listeImages.add(new Image("/images/6.png"));
-
-        int index = (int)(Math.random() * 6);
-
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.ZERO, new KeyValue(imageView.imageProperty(), imageView.getImage())),
-                new KeyFrame(Duration.seconds(0.2), new KeyValue(imageView.imageProperty(), listeImages.get(index)))
-        );
-
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
-
-        imageView.setImage(new Image("/images/"+endValue+".png"));
-
     }
 
 }

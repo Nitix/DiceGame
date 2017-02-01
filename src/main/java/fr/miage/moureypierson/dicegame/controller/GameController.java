@@ -17,7 +17,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Created by Asus on 23/01/2017.
@@ -50,6 +55,8 @@ public class GameController implements Initializable {
 
     private Stage stage;
 
+    private final Object lock = new Object();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         des = new Des();
@@ -74,11 +81,11 @@ public class GameController implements Initializable {
 
     public void animation(int value){
         int[] images = getDeImage(value);
-        //this.getGameView().animation(imageDe1,images[0]);
-        //this.getGameView().animation(imageDe2,images[1]);
+        this.animation(imageDe1,images[0]);
+        this.animation(imageDe2,images[1]);
 
-        imageDe1.setImage(new Image("/images/"+images[0]+".png"));
-        imageDe2.setImage(new Image("/images/"+images[1]+".png"));
+        //imageDe1.setImage(new Image("/images/"+images[0]+".png"));
+        //imageDe2.setImage(new Image("/images/"+images[1]+".png"));
     }
 
     private int[] getDeImage(int value){
@@ -158,5 +165,10 @@ public class GameController implements Initializable {
 
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
+    }
+
+    public void animation(ImageView imageView, int endValue){
+        TimerAnimation.startAnimation(imageView);
+        imageView.setImage(new Image("/images/"+endValue+".png"));
     }
 }
