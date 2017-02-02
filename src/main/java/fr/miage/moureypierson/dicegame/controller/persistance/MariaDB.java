@@ -3,7 +3,7 @@ package fr.miage.moureypierson.dicegame.controller.persistance;
 import fr.miage.moureypierson.dicegame.model.Persistable;
 
 /**
- * MariaDB implementation of persistence unit
+ * MariaDB implementation of persistence unit.
  */
 public class MariaDB implements Persistence {
 

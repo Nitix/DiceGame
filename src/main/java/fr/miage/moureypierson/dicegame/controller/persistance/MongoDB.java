@@ -3,7 +3,7 @@ package fr.miage.moureypierson.dicegame.controller.persistance;
 import fr.miage.moureypierson.dicegame.model.Persistable;
 
 /**
- * MongoDB implementation of persistence unit
+ * MongoDB implementation of persistence unit.
  */
 public class MongoDB implements Persistence {
 

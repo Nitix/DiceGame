@@ -32,7 +32,7 @@ public class ScoreController implements Initializable {
     private Button retour;
 
     @FXML
-    private ListView listeScore;
+    private ListView<Integer> listeScore;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,15 +73,15 @@ public class ScoreController implements Initializable {
     }
 
     private void initMyScores(){
-        ObservableList<String> items = FXCollections.observableArrayList();
+        ObservableList<Integer> items = FXCollections.observableArrayList();
         for(int value : joueur.getScoresJoueur()){
-            items.add(value+"");
+            items.add(value);
         }
         listeScore.setItems(items);
     }
 
     private void initAllScores(){
-        ObservableList<String> items = FXCollections.observableArrayList ("Il faut", "récupérer tous", "les joueurs", "de la base");
+        ObservableList<Integer> items = FXCollections.observableArrayList (0, 0);
         listeScore.setItems(items);
     }
 
