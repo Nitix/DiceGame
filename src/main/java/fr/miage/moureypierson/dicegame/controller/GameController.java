@@ -133,7 +133,7 @@ public class GameController implements Initializable {
                     de1 = de2 = 3;
                 }
                 break;
-            case MAX_TOUR:
+            case 7:
                 if (dispo == 1) {
                     de1 = 1;
                     de2 = 6;
