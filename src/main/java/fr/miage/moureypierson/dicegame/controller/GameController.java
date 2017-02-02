@@ -1,7 +1,7 @@
 package fr.miage.moureypierson.dicegame.controller;
 
-import fr.miage.moureypierson.dicegame.model.Des;
-import fr.miage.moureypierson.dicegame.model.Joueur;
+import fr.miage.moureypierson.dicegame.model.Die;
+import fr.miage.moureypierson.dicegame.model.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,8 +24,8 @@ public class GameController implements Initializable {
 
     public static final int MAX_TOUR = 7;
 
-    private Des des;
-    private Joueur joueur;
+    private Die die;
+    private Player player;
 
     @FXML
     private Label text;
@@ -49,26 +49,26 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.des = new Des();
+        this.die = new Die();
 
         boutonJouer.setOnAction(event -> {
             int value = getResult();
             animation(value);
 
-            joueur.addPoints(value);
-            joueur.upTour();
+            player.addPoints(value);
+            player.upTurn();
 
-            if (joueur.getTour() >= MAX_TOUR) {
+            if (player.getTurn() >= MAX_TOUR) {
                 boolean isHighScore = isHighScore(value);
                 if (isHighScore) {
                     text.setText("High Score !");
                 } else {
                     text.setText("Fin du jeu");
                 }
-                joueur.addScore(joueur.getPointsPartie());
+                player.addScore(player.getPointsParty());
                 boutonJouer.setDisable(true);
             } else {
-                text.setText("Encore " + (MAX_TOUR - joueur.getTour()) + " tour(s) !");
+                text.setText("Encore " + (MAX_TOUR - player.getTurn()) + " tour(s) !");
             }
         });
 
@@ -183,8 +183,8 @@ public class GameController implements Initializable {
     }
 
     public int getResult() {
-        this.des.roll();
-        return this.des.getValue();
+        this.die.roll();
+        return this.die.getValue();
     }
 
     public void loadScoreScene(boolean isMyScore) {
@@ -196,18 +196,18 @@ public class GameController implements Initializable {
             e.printStackTrace();
         }
 
-        stage.setTitle("Dice Game");
+        stage.setTitle("Die Game");
         stage.setScene(new Scene(root, 600, 400));
         ScoreController controller = fxmlLoader.getController();
-        controller.setJoueur(joueur);
+        controller.setPlayer(player);
         controller.setType(isMyScore);
         controller.setStage(stage);
         stage.show();
     }
 
-    public void setJoueur(Joueur joueur) {
-        this.joueur = joueur;
-        if (this.joueur.getTour() >= MAX_TOUR) {
+    public void setPlayer(Player player) {
+        this.player = player;
+        if (this.player.getTurn() >= MAX_TOUR) {
             boutonJouer.setDisable(true);
         }
     }
@@ -218,6 +218,6 @@ public class GameController implements Initializable {
     }
 
     public boolean isHighScore(int value) {
-        return joueur.getScoresJoueur().size() <= 0 || value >= joueur.getScoresJoueur().get(0);
+        return player.getScores().size() <= 0 || value >= player.getScores().get(0);
     }
 }
