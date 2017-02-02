@@ -8,6 +8,11 @@ import fr.miage.moureypierson.dicegame.controller.Randomizer;
 public class Die {
 
     /**
+     * Total number of dice in the game.
+     */
+    private static int nbDes = 0;
+
+    /**
      * Id of the die.
      */
     private int idDie;
@@ -16,11 +21,6 @@ public class Die {
      * Value of the die.
      */
     private int value;
-
-    /**
-     * Total number of dice in the game.
-     */
-    private static int nbDes = 0;
 
     /**
      * Create a new die.
