@@ -2,9 +2,6 @@ package fr.miage.moureypierson.dicegame.controller;
 
 import fr.miage.moureypierson.dicegame.model.Des;
 import fr.miage.moureypierson.dicegame.model.Joueur;
-import fr.miage.moureypierson.dicegame.view.GameView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,12 +44,6 @@ public class GameController implements Initializable {
 
     @FXML
     private ImageView imageDe2;
-
-    private GameView gameView = new GameView();
-
-    public GameView getGameView() {
-        return gameView;
-    }
 
     private Stage stage;
 

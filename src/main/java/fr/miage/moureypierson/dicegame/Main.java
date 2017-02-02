@@ -1,28 +1,34 @@
 package fr.miage.moureypierson.dicegame;
 
-import fr.miage.moureypierson.dicegame.view.LoginView;
+import fr.miage.moureypierson.dicegame.controller.LoginController;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  * Created by Asus on 08/01/2017.
  */
-public class Main {
+public class Main extends Application {
 
     public static void main(String[] args) {
-        //JeuDes jeuDes = new JeuDes();
-        /*new Thread(() -> {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            //jeuDes.getListeScore().ajouter(new Joueur("Pierson", "Guillaume",  jeuDes.getListeScore()), 12);
-
-        }).start();*/
         try {
-            Application.launch(LoginView.class, args);
+            Application.launch(Main.class, args);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vues/login.fxml"));
+        Parent root = fxmlLoader.load();
+
+        stage.setTitle("Dice Game");
+        stage.setScene(new Scene(root, 600, 400));
+        LoginController controller = fxmlLoader.getController();
+        controller.setStage(stage);
+        stage.show();
     }
 }
