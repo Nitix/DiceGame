@@ -62,26 +62,25 @@ public class ScoreController implements Initializable {
         this.stage = stage;
     }
 
-    public void setType(boolean isMyScore){
+    public void setType(boolean isMyScore) {
         this.isMyScore = isMyScore;
-        if(isMyScore){
+        if (isMyScore) {
             initMyScores();
-        }
-        else{
+        } else {
             initAllScores();
         }
     }
 
-    private void initMyScores(){
+    private void initMyScores() {
         ObservableList<Integer> items = FXCollections.observableArrayList();
-        for(int value : joueur.getScoresJoueur()){
+        for (int value : joueur.getScoresJoueur()) {
             items.add(value);
         }
         listeScore.setItems(items);
     }
 
-    private void initAllScores(){
-        ObservableList<Integer> items = FXCollections.observableArrayList (0, 0);
+    private void initAllScores() {
+        ObservableList<Integer> items = FXCollections.observableArrayList(0, 0);
         listeScore.setItems(items);
     }
 

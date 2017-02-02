@@ -7,6 +7,7 @@ public class MongoDBInitializator extends PersistenceInitializator {
 
     /**
      * Initialize the MongoDB persistence unit.
+     *
      * @return MongoDB persistence unit.
      */
     @Override

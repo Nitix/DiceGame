@@ -8,7 +8,7 @@ import javafx.application.Application;
  */
 public class Main {
 
-    public static void main (String [] args){
+    public static void main(String[] args) {
         //JeuDes jeuDes = new JeuDes();
         /*new Thread(() -> {
             try {
@@ -19,10 +19,9 @@ public class Main {
             //jeuDes.getListeScore().ajouter(new Joueur("Pierson", "Guillaume",  jeuDes.getListeScore()), 12);
 
         }).start();*/
-        try{
+        try {
             Application.launch(LoginView.class, args);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

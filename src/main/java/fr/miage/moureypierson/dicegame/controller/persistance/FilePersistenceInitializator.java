@@ -7,6 +7,7 @@ public class FilePersistenceInitializator extends PersistenceInitializator {
 
     /**
      * Initialize the file persistence unit.
+     *
      * @return The file persistence unit.
      */
     @Override

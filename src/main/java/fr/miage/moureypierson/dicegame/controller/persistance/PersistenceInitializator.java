@@ -7,6 +7,7 @@ public abstract class PersistenceInitializator {
 
     /**
      * Initialize the persistence unit.
+     *
      * @return The initialed persistence unit.
      */
     public abstract Persistence initiatePersistence();

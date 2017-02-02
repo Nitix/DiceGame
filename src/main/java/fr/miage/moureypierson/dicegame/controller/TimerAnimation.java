@@ -3,6 +3,7 @@ package fr.miage.moureypierson.dicegame.controller;
 /**
  * Created by Asus on 01/02/2017.
  */
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -17,7 +18,7 @@ public class TimerAnimation {
     public TimerAnimation(ImageView i) {
         this.imageView = i;
         timer = new Timer();
-        timer.schedule(new RemindTask(),0,100);
+        timer.schedule(new RemindTask(), 0, 100);
     }
 
     class RemindTask extends TimerTask {
@@ -33,7 +34,7 @@ public class TimerAnimation {
             listeImages.add(new Image("/images/6.png"));
 
             if (compteur > 0) {
-                int index = (int) (Math.random()*6);
+                int index = (int) (Math.random() * 6);
                 imageView.setImage(listeImages.get(index));
                 compteur--;
             } else {

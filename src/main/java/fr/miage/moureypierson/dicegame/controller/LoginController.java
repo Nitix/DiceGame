@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Asus on 23/01/2017.
  */
-public class LoginController implements Initializable{
+public class LoginController implements Initializable {
 
     @FXML
     private Button start;

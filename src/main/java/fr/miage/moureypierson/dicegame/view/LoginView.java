@@ -2,7 +2,6 @@ package fr.miage.moureypierson.dicegame.view;
 
 import fr.miage.moureypierson.dicegame.controller.LoginController;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

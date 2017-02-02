@@ -10,6 +10,7 @@ public interface Persistence {
 
     /**
      * Insert or update the row if it isn't present in the persistence unit.
+     *
      * @param persistable the data to save
      * @return the id in the database or -1 if it's an update
      */
@@ -17,6 +18,7 @@ public interface Persistence {
 
     /**
      * Delete the row from the persistence unit.
+     *
      * @param persistable the data to delete
      */
     void delete(Persistable persistable);

@@ -1,6 +1,7 @@
 package fr.miage.moureypierson.dicegame.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by Asus on 08/01/2017.
@@ -40,30 +41,31 @@ public class Joueur implements Persistable {
         this.prenomJoueur = prenomJoueur;
     }
 
-    public void addPoints(int value){
-        if(value==7){this.pointsPartie+=10;}
+    public void addPoints(int value) {
+        if (value == 7) {
+            this.pointsPartie += 10;
+        }
     }
 
     public boolean addScore(int value) {
-        if(this.listeScore.size()>=15) {
+        if (this.listeScore.size() >= 15) {
             int index = 0;
             for (int score : listeScore) {
                 if (value > score) {
-                    this.listeScore.set(index,value);
+                    this.listeScore.set(index, value);
                     tri();
                     return true;
                 }
                 index++;
             }
-        }
-        else{
+        } else {
             this.listeScore.add(value);
         }
         tri();
         return true;
     }
 
-    public void tri(){
+    public void tri() {
         listeScore.sort(Comparator.reverseOrder());
     }
 
@@ -71,7 +73,7 @@ public class Joueur implements Persistable {
         return nbTour;
     }
 
-    public void upTour(){
+    public void upTour() {
         this.nbTour++;
     }
 

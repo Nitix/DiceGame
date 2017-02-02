@@ -7,6 +7,7 @@ public class MariaDBInitializator extends PersistenceInitializator {
 
     /**
      * Initialize the MariaDB persistence unit.
+     *
      * @return The MariaDB persistence unit.
      */
     @Override

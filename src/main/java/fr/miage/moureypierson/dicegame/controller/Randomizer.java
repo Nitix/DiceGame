@@ -6,16 +6,17 @@ package fr.miage.moureypierson.dicegame.controller;
 public class Randomizer {
     private static Randomizer instance;
 
-    private Randomizer(){ }
+    private Randomizer() {
+    }
 
-    public synchronized static Randomizer getInstance(){
-        if(instance == null){
+    public synchronized static Randomizer getInstance() {
+        if (instance == null) {
             instance = new Randomizer();
         }
         return instance;
     }
 
     public int nextRandom() {
-        return (int)(Math.random() * (12-2)) + 2;
+        return (int) (Math.random() * (12 - 2)) + 2;
     }
 }
