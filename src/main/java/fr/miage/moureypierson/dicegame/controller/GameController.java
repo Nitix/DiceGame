@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
  */
 public class GameController implements Initializable {
 
+    public static final int MAX_TOUR = 7;
+
     private Des des;
     private Joueur joueur;
 
@@ -58,27 +60,24 @@ public class GameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.des = new Des();
 
-        boutonJouer.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                int value = getResult();
-                animation(value);
+        boutonJouer.setOnAction(event -> {
+            int value = getResult();
+            animation(value);
 
-                joueur.addPoints(value);
-                joueur.upTour();
+            joueur.addPoints(value);
+            joueur.upTour();
 
-                if (joueur.getTour() >= 7) {
-                    boolean isHighScore = isHighScore(value);
-                    if (isHighScore) {
-                        text.setText("High Score !");
-                    } else {
-                        text.setText("Fin du jeu");
-                    }
-                    joueur.addScore(joueur.getPointsPartie());
-                    boutonJouer.setDisable(true);
+            if (joueur.getTour() >= MAX_TOUR) {
+                boolean isHighScore = isHighScore(value);
+                if (isHighScore) {
+                    text.setText("High Score !");
                 } else {
-                    text.setText("Encore " + (7 - joueur.getTour()) + " tour(s) !");
+                    text.setText("Fin du jeu");
                 }
+                joueur.addScore(joueur.getPointsPartie());
+                boutonJouer.setDisable(true);
+            } else {
+                text.setText("Encore " + (MAX_TOUR - joueur.getTour()) + " tour(s) !");
             }
         });
 
@@ -134,7 +133,7 @@ public class GameController implements Initializable {
                     de1 = de2 = 3;
                 }
                 break;
-            case 7:
+            case MAX_TOUR:
                 if (dispo == 1) {
                     de1 = 1;
                     de2 = 6;
@@ -217,7 +216,7 @@ public class GameController implements Initializable {
 
     public void setJoueur(Joueur joueur) {
         this.joueur = joueur;
-        if (this.joueur.getTour() >= 7) {
+        if (this.joueur.getTour() >= MAX_TOUR) {
             boutonJouer.setDisable(true);
         }
     }
@@ -228,13 +227,6 @@ public class GameController implements Initializable {
     }
 
     public boolean isHighScore(int value) {
-        if (joueur.getScoresJoueur().size() > 0) {
-            if (value >= joueur.getScoresJoueur().get(0)) {
-                return true;
-            }
-            return false;
-        } else {
-            return true;
-        }
+        return joueur.getScoresJoueur().size() <= 0 || value >= joueur.getScoresJoueur().get(0);
     }
 }
