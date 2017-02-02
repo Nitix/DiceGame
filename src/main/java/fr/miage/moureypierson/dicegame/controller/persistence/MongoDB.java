@@ -1,11 +1,12 @@
-package fr.miage.moureypierson.dicegame.controller.persistance;
+package fr.miage.moureypierson.dicegame.controller.persistence;
 
 import fr.miage.moureypierson.dicegame.model.Persistable;
 
 /**
- * File persistance implementation of persistence unit.
+ * MongoDB implementation of persistence unit.
  */
-public class FilePersistence implements Persistence {
+public class MongoDB implements Persistence {
+
     @Override
     public long save(Persistable persistable) {
         return 0;

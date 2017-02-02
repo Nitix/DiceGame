@@ -1,4 +1,4 @@
-package fr.miage.moureypierson.dicegame.controller.persistance;
+package fr.miage.moureypierson.dicegame.controller.persistence;
 
 /**
  * Initialize the MongoDB persistence unit.
