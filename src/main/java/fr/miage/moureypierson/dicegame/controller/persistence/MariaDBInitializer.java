@@ -3,7 +3,7 @@ package fr.miage.moureypierson.dicegame.controller.persistence;
 /**
  * Initialize the MariaDB persistence unit.
  */
-public class MariaDBInitializator extends PersistenceInitializator {
+public class MariaDBInitializer extends PersistenceInitializer {
 
     /**
      * Initialize the MariaDB persistence unit.

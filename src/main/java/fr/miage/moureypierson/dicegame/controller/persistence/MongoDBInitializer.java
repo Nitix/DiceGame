@@ -3,7 +3,7 @@ package fr.miage.moureypierson.dicegame.controller.persistence;
 /**
  * Initialize the MongoDB persistence unit.
  */
-public class MongoDBInitializator extends PersistenceInitializator {
+public class MongoDBInitializer extends PersistenceInitializer {
 
     /**
      * Initialize the MongoDB persistence unit.

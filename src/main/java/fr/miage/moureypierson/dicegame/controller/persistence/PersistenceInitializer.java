@@ -3,7 +3,7 @@ package fr.miage.moureypierson.dicegame.controller.persistence;
 /**
  * Initialize the persistence unit.
  */
-public abstract class PersistenceInitializator {
+public abstract class PersistenceInitializer {
 
     /**
      * Initialize the persistence unit.
