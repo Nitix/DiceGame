@@ -136,6 +136,13 @@ public class Player implements Persistable {
     }
 
     /**
+     * Get the current turn.
+     */
+    public void resetTurn() {
+        this.currentTurn = 0;
+    }
+
+    /**
      * Add one turn to the player.
      */
     public void upTurn() {

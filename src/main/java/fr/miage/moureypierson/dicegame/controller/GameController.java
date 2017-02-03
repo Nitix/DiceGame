@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
  */
 public class GameController implements Initializable {
 
-    public static final int MAX_TOUR = 7;
+    public static final int MAX_TOUR = 10;
 
     private Die die;
     private Player player;
@@ -32,6 +32,9 @@ public class GameController implements Initializable {
 
     @FXML
     private Button boutonJouer;
+
+    @FXML
+    private Button boutonRejouer;
 
     @FXML
     private Button boutonMesScores;
@@ -51,7 +54,10 @@ public class GameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.die = new Die();
 
+        boutonRejouer.setDisable(true);
+
         boutonJouer.setOnAction(event -> {
+
             int value = getResult();
             animation(value);
 
@@ -67,9 +73,16 @@ public class GameController implements Initializable {
                 }
                 player.addScore(player.getPointsParty());
                 boutonJouer.setDisable(true);
+                boutonRejouer.setDisable(false);
             } else {
                 text.setText("Encore " + (MAX_TOUR - player.getTurn()) + " tour(s) !");
             }
+        });
+
+        boutonRejouer.setOnAction(event -> {
+            player.resetTurn();
+            boutonJouer.setDisable(false);
+            this.initialize(location,resources);
         });
 
         boutonLesScores.setOnAction(event -> loadScoreScene(false));
@@ -209,6 +222,7 @@ public class GameController implements Initializable {
         this.player = player;
         if (this.player.getTurn() >= MAX_TOUR) {
             boutonJouer.setDisable(true);
+            boutonRejouer.setDisable(false);
         }
     }
 
@@ -220,4 +234,5 @@ public class GameController implements Initializable {
     public boolean isHighScore(int value) {
         return player.getScores().size() <= 0 || value >= player.getScores().get(0);
     }
+
 }

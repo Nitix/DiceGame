@@ -10,7 +10,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" fx:controller="fr.miage.moureypierson.dicegame.controller.GameController" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="245.0" layoutY="278.0" mnemonicParsing="false" text="Lancer les dés" fx:id="boutonJouer" />
+      <Button layoutX="200.0" layoutY="278.0" mnemonicParsing="false" text="Lancer les dés" fx:id="boutonJouer" />
+       <Button layoutX="350.0" layoutY="278.0" mnemonicParsing="false" text="Rejouer" fx:id="boutonRejouer" />
       <Label layoutX="190.0" layoutY="73.0" text="A vous de jouer !" fx:id="text">
          <font>
             <Font size="30.0" />
