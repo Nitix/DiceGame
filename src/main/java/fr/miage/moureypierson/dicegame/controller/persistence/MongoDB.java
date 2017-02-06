@@ -27,6 +27,7 @@ public class MongoDB implements Persistence {
         try {
             session = sessionFactory.openSession();
             Transaction tx = session.beginTransaction();
+            session.delete(persistable);
             session.saveOrUpdate(persistable);
             tx.commit();
         } catch (Exception e) {
