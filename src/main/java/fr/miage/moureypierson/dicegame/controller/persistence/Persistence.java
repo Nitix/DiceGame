@@ -1,5 +1,6 @@
 package fr.miage.moureypierson.dicegame.controller.persistence;
 
+import fr.miage.moureypierson.dicegame.controller.HighScores;
 import fr.miage.moureypierson.dicegame.model.Persistable;
 
 /**
@@ -12,14 +13,11 @@ public interface Persistence {
      * Insert or update the row if it isn't present in the persistence unit.
      *
      * @param persistable the data to save
-     * @return the id in the database or -1 if it's an update
      */
-    long save(Persistable persistable);
+    void save(Persistable persistable);
 
     /**
-     * Delete the row from the persistence unit.
-     *
-     * @param persistable the data to delete
+     * Retrieve all data
      */
-    void delete(Persistable persistable);
+    HighScores loadAll();
 }

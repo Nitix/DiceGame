@@ -1,17 +1,29 @@
 package fr.miage.moureypierson.dicegame.model;
 
+import javax.persistence.*;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Represent a player.
  */
+@Entity
 public class Player implements Persistable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Long Id;
 
     /**
      * Scores of the player.
      */
-    private ArrayList<Integer> scores = new ArrayList<>();
+    @ElementCollection
+    @XmlElement(name = "score")
+    @XmlElementWrapper(name="scores")
+    private List<Integer> scores = new ArrayList<>();
 
     /**
      * Last name of the player.
@@ -26,12 +38,20 @@ public class Player implements Persistable {
     /**
      * Points of the current party.
      */
+    @Transient
     private int pointsParty = 0;
 
     /**
      * Current turn.
      */
+    @Transient
     private int currentTurn = 0;
+
+    /**
+     * Create a new player.
+     */
+    public Player() {
+    }
 
     /**
      * Create a new player.
@@ -64,7 +84,7 @@ public class Player implements Persistable {
      * Return scores of the player.
      * @return scores.
      */
-    public ArrayList<Integer> getScores() {
+    public List<Integer> getScores() {
         return scores;
     }
 
@@ -155,5 +175,19 @@ public class Player implements Persistable {
      */
     public int getPointsParty() {
         return pointsParty;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(lastName, player.lastName) &&
+                Objects.equals(firstName, player.firstName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lastName, firstName);
     }
 }

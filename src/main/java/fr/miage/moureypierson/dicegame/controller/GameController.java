@@ -1,5 +1,6 @@
 package fr.miage.moureypierson.dicegame.controller;
 
+import fr.miage.moureypierson.dicegame.controller.persistence.*;
 import fr.miage.moureypierson.dicegame.model.Die;
 import fr.miage.moureypierson.dicegame.model.Player;
 import javafx.fxml.FXML;
@@ -50,9 +51,13 @@ public class GameController implements Initializable {
 
     private Stage stage;
 
+    private Persistence persistence;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.die = new Die();
+        MongoDBInitializer MongoDBInitializer = new MongoDBInitializer();
+        persistence = MongoDBInitializer.initiatePersistence();
 
         boutonRejouer.setDisable(true);
 
@@ -74,6 +79,7 @@ public class GameController implements Initializable {
                 player.addScore(player.getPointsParty());
                 boutonJouer.setDisable(true);
                 boutonRejouer.setDisable(false);
+                persistence.save(player);
             } else {
                 text.setText("Encore " + (MAX_TOUR - player.getTurn()) + " tour(s) !");
             }

@@ -1,0 +1,17 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- properties -->
+        <property name="hibernate.ogm.datastore.provider">MONGODB</property>
+        <property name="hibernate.ogm.datastore.database">dicegame</property>
+        <property name="hibernate.ogm.datastore.create_database">true</property>
+        <property name="hibernate.ogm.datastore.">true</property>
+
+        <!-- mapping files -->
+        <mapping class="fr.miage.moureypierson.dicegame.model.Player"/>
+
+    </session-factory>
+</hibernate-configuration>
