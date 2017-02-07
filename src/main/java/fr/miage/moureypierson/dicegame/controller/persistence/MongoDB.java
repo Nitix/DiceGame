@@ -1,12 +1,10 @@
 package fr.miage.moureypierson.dicegame.controller.persistence;
 
+import com.mongodb.QueryBuilder;
 import fr.miage.moureypierson.dicegame.controller.HighScores;
 import fr.miage.moureypierson.dicegame.model.Persistable;
 import fr.miage.moureypierson.dicegame.model.Player;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 
 import java.util.List;
 
@@ -45,8 +43,7 @@ public class MongoDB implements Persistence {
         HighScores highScores = new HighScores();
         try {
             session = sessionFactory.openSession();
-            Criteria criteria = session.createCriteria(Player.class);
-            highScores.setPlayers((List<Player>) criteria.list());
+            highScores.setPlayers(session.createSQLQuery("db.Player.find({})").addEntity(Player.class).list());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

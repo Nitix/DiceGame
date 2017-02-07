@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Player implements Persistable, Comparable<Player>{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
 
     /**

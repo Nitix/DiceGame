@@ -9,6 +9,8 @@
         <property name="hibernate.ogm.datastore.database">dicegame</property>
         <property name="hibernate.ogm.datastore.create_database">true</property>
         <property name="hibernate.ogm.datastore.">true</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
+        <property name="hibernate.ogm.enable_lazy_load_no_trans">true</property>
 
         <!-- mapping files -->
         <mapping class="fr.miage.moureypierson.dicegame.model.Player"/>
