@@ -67,8 +67,8 @@ public class LoginController implements Initializable {
             alert.setHeaderText(null);
             alert.setTitle("Règles du jeu");
             alert.contentTextProperty().set("Lancez les dés pendant 10 tours. A chaque fois que la somme" +
-                    " des deux dés fait 7 vous gagner 10 points.\nAyez le plus de point possible " +
-                            "pour être sur la tableau des highscore ;)");
+                    " des deux dés fait 7, vous gagner 10 points.\nAyez le plus de points possible " +
+                            "pour être sur le tableau des highscores !");
             alert.showAndWait();
         });
         configuration.setOnAction(event -> {
