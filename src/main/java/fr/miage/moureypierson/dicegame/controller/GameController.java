@@ -25,7 +25,8 @@ public class GameController implements Initializable {
 
     public static final int MAX_TOUR = 10;
 
-    private Die die;
+    private Die die1;
+    private Die die2;
     private Player player;
 
     @FXML
@@ -51,26 +52,27 @@ public class GameController implements Initializable {
 
     private Stage stage;
 
-    private Persistence persistence;
+    private Persistence persistence = Config.getInstance().getPersistanceInitializer().initiatePersistence();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.die = new Die();
-        MongoDBInitializer MongoDBInitializer = new MongoDBInitializer();
-        persistence = MongoDBInitializer.initiatePersistence();
+        this.die1 = new Die();
+        this.die2 = new Die();
 
         boutonRejouer.setDisable(true);
 
         boutonJouer.setOnAction(event -> {
+            this.rollDice();
+            int valDie1 = die1.getValue();
+            int valDie2 = die2.getValue();
+            int total = valDie1 + valDie2;
+            animation(valDie1, valDie2);
 
-            int value = getResult();
-            animation(value);
-
-            player.addPoints(value);
+            player.addPoints(total);
             player.upTurn();
 
             if (player.getTurn() >= MAX_TOUR) {
-                boolean isHighScore = isHighScore(value);
+                boolean isHighScore = isHighScore(total);
                 if (isHighScore) {
                     text.setText("High Score !");
                 } else {
@@ -100,110 +102,14 @@ public class GameController implements Initializable {
         this.stage = stage;
     }
 
-    public void animation(int value) {
-        int[] images = getDeImage(value);
-        this.animation(imageDe1, images[0]);
-        this.animation(imageDe2, images[1]);
+    public void animation(int val1, int val2) {
+        this.animation(imageDe1, val1);
+        this.animation(imageDe2, val2);
     }
 
-    private int[] getDeImage(int value) {
-        int de1 = 1;
-        int de2 = 1;
-        int dispo = (int) (Math.random() * 3);
-        switch (value) {
-            case 3:
-                de1 = 1;
-                de2 = 2;
-                break;
-            case 4:
-                if (dispo == 1) {
-                    de1 = de2 = 2;
-                } else {
-                    de1 = 1;
-                    de2 = 3;
-                }
-                break;
-            case 5:
-                if (dispo == 1) {
-                    de1 = 1;
-                    de2 = 4;
-                } else {
-                    de1 = 2;
-                    de2 = 3;
-                }
-                break;
-            case 6:
-                if (dispo == 1) {
-                    de1 = 1;
-                    de2 = 5;
-                } else if (dispo == 2) {
-                    de1 = 2;
-                    de2 = 4;
-                } else {
-                    de1 = de2 = 3;
-                }
-                break;
-            case 7:
-                if (dispo == 1) {
-                    de1 = 1;
-                    de2 = 6;
-                } else if (dispo == 2) {
-                    de1 = 2;
-                    de2 = 5;
-                } else {
-                    de1 = 3;
-                    de2 = 4;
-                }
-                break;
-            case 8:
-                if (dispo == 1) {
-                    de1 = 2;
-                    de2 = 6;
-                } else if (dispo == 2) {
-                    de1 = 3;
-                    de2 = 5;
-                } else {
-                    de1 = 4;
-                    de2 = 4;
-                }
-                break;
-            case 9:
-                if (dispo == 1) {
-                    de1 = 3;
-                    de2 = 6;
-                } else {
-                    de1 = 4;
-                    de2 = 5;
-                }
-                break;
-            case 10:
-                if (dispo == 1) {
-                    de1 = 4;
-                    de2 = 6;
-                } else {
-                    de1 = 5;
-                    de2 = 5;
-                }
-                break;
-            case 11:
-                de1 = 5;
-                de2 = 6;
-                break;
-            case 12:
-                de1 = 6;
-                de2 = 6;
-                break;
-            default:
-                de1 = 1;
-                de2 = 1;
-                break;
-        }
-        return new int[]{de1, de2};
-    }
-
-    public int getResult() {
-        this.die.roll();
-        return this.die.getValue();
+    public void rollDice() {
+        this.die1.roll();
+        this.die2.roll();
     }
 
     public void loadScoreScene(boolean isMyScore) {
@@ -218,7 +124,9 @@ public class GameController implements Initializable {
         stage.setTitle("Die Game");
         stage.setScene(new Scene(root, 600, 400));
         ScoreController controller = fxmlLoader.getController();
+        HighScores highScores = persistence.loadAll();
         controller.setPlayer(player);
+        controller.setHighScores(highScores);
         controller.setType(isMyScore);
         controller.setStage(stage);
         stage.show();

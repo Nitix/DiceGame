@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -24,7 +26,7 @@ import java.util.ResourceBundle;
 public class ScoreController implements Initializable {
 
     private Stage stage;
-    private Player player;
+    private HighScores highScores;
 
     private boolean isMyScore;
 
@@ -32,7 +34,8 @@ public class ScoreController implements Initializable {
     private Button retour;
 
     @FXML
-    private ListView<Integer> listeScore;
+    private ListView<String> listeScore;
+    private Player player;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -72,20 +75,33 @@ public class ScoreController implements Initializable {
     }
 
     private void initMyScores() {
-        ObservableList<Integer> items = FXCollections.observableArrayList();
+        ObservableList<String> items = FXCollections.observableArrayList();
+        String firstname = player.getFirstName();
+        String lastName = player.getLastName();
         for (int value : player.getScores()) {
-            items.add(value);
+            items.add(firstname + " " + lastName + " : " + value);
         }
         listeScore.setItems(items);
     }
 
     private void initAllScores() {
-        ObservableList<Integer> items = FXCollections.observableArrayList(0, 0);
+        ObservableList<String> items = FXCollections.observableArrayList();
+        Collections.sort(highScores.getPlayers(), Collections.reverseOrder());
+        for (Player pl : highScores.getPlayers()) {
+            items.add(pl.getFirstName() + " " + pl.getLastName() + " : " + pl.getScores().get(0));
+        }
         listeScore.setItems(items);
+    }
+
+    public void setHighScores(HighScores highScores) {
+        this.highScores = highScores;
     }
 
     public void setPlayer(Player player) {
         this.player = player;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
 }

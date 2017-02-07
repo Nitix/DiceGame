@@ -11,7 +11,7 @@ import java.util.Objects;
  * Represent a player.
  */
 @Entity
-public class Player implements Persistable {
+public class Player implements Persistable, Comparable<Player>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -177,6 +177,7 @@ public class Player implements Persistable {
         return pointsParty;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -189,5 +190,18 @@ public class Player implements Persistable {
     @Override
     public int hashCode() {
         return Objects.hash(lastName, firstName);
+    }
+
+
+    @Override
+    public int compareTo(Player o) {
+        if(this.getScores().get(0) == null && o.getScores().get(0) != null) {
+            return 1;
+        } else if (this.getScores().get(0) != null && o.getScores().get(0) == null){
+            return -1;
+        } else if (this.getScores().get(0) == null && o.getScores().get(0) == null){
+            return 0;
+        }
+        return this.getScores().get(0).compareTo(o.getScores().get(0));
     }
 }

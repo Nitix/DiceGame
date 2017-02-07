@@ -17,6 +17,6 @@ public class Randomizer {
     }
 
     public int nextRandom() {
-        return (int) (Math.random() * (12 - 2)) + 2;
+        return (int) (Math.random() * 6) + 1;
     }
 }
